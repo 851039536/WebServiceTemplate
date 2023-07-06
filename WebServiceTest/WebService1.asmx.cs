@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Media;
-using System.Web;
+﻿using System.Media;
 using System.Web.Services;
 
-namespace WebServiceTest
+namespace WebServiceTemplate
 {
     /// <summary>
     /// WebService1 的摘要说明
@@ -15,23 +11,23 @@ namespace WebServiceTest
     [System.ComponentModel.ToolboxItem(false)]
     // 若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消注释以下行。 
     // [System.Web.Script.Services.ScriptService]
-    public class WebService1 : System.Web.Services.WebService
+    public class WebService1 : WebService
     {
-        SoundPlayer player = new SoundPlayer();
+        private readonly SoundPlayer _player = new SoundPlayer();
         [WebMethod]
         public string PlayMusic()
         {
-            player.SoundLocation = @"D:\config\x0pbk-swz4q.wav";
-            player.Load();
-            player.Play();
+            _player.SoundLocation = @"D:\config\x0pbk-swz4q.wav";
+            _player.Load();
+            _player.Play();
             return "播放音乐中";
         }
 
         [WebMethod]
         public string StopMusic()
         {
-            player.Stop();
-            player.Dispose();
+            _player.Stop();
+            _player.Dispose();
             return "音乐关闭";
         }
         [WebMethod(Description = "测试")]
